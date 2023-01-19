@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자바스크립트 자료형</title>
+  </head>
+  <body>
+    <h1>자바스크립트 자료형</h1>
+    <h2>변수(variable)와 상수(constant)</h2>
+    <p>변수는 데이터를 담는 그릇 - var, let으로 선언</p>
+    <p>상수는 변하지 않는 값을 담은 그릇 - const로 선언</p>
+    <p>변수/상수 선언 시 자료형을 기술할 필요 없음</p>
+
+    <p>변수 선언 시 var이나 let(ES6에서 추가)을 사용</p>
+    <p>실무에서는 오류를 최소화하기 위해 let 사용을 추천!</p>
+    <p>자바스크립트에서는 각 문장의 끝은 ;으로 마무리해야 함</p>
+
+    <script>
+      document.write("1 + 2 = ", 1 + 2, "<br>");
+      /*html 문서에 무언가를 출력 가능*/
+      var x = 10;
+      var y = 2;
+      document.write("x + y = ", x + y, "<br>");
+
+      var z;  // 변수 초기화 없이 출력하면
+              // undefined가 출력
+      document.write("z = ", z, "<br>");
+
+      let a;
+      document.write("a = ", a, "<br>");
+
+      var z = 10; // 위에서 선언한 변수를 다시 재선언함
+      // 문제 없이 출력됨
+      document.write("z = ", z, "<br>");
+
+      /*let a = 10;*/ // 위에서 선언한 변수를 다시 재선언함
+      // 오류 발생!
+      document.write("a = ", a, "<br>");
+      /*'let'으로 변수를 선언하면 같은 변수를 두 번 이상 선언할 수 없음*/
+      /*되도록이면 'let'을 쓸 것을 권장*/
+    </script>
+  </body>
+</html>

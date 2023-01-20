@@ -21,8 +21,10 @@
       console.log("+---+---+---+---+     (   -   )  <  Junior |");
       console.log("|   |   |   |   |      |  |  |    \\ Coder! /");
       console.log("+---+---+---+---+     (___|___)    ￣￣￣￣");
+    </script>
 
-      let soju = 3000;
+    <script>
+      /*let soju = 3000;
       let sojuAmt = 2;
       let sojuSum = soju * sojuAmt;
       let nnchk = 12000;
@@ -62,7 +64,37 @@ ${money}<br>`);
       document.write(`잔돈\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
 \u00A0\u00A0\u00A0${change}<br>`);
       document.write("------------------------<br>");
-      document.write("2023. 01. 19 18:13:00<br>");
+      document.write("2023. 01. 19 18:13:00<br>");*/
     </script>
+
+  <script>
+    let soju = 3000;
+    let sj_qty = 2;
+    let chicken = 12000;
+    let chck_qty = 1;
+
+    let total = (soju * sj_qty) + (chicken * chck_qty);
+    let vat = total * 0.1;
+    let sum = total * 0.9;
+
+    let money = 50000;
+    let charge = money - total;
+
+    console.log(` `);
+    console.log(`2.`);
+    console.log(`[ 음식나라 ]`);
+    console.log(`------------------------------`);
+    console.log(`소주\t\t`, sj_qty, `\t`, soju*sj_qty);
+    console.log(`너나치킨\t ${chck_qty}\t${chicken}`);
+    console.log(`------------------------------`);
+    console.log(`과세합계\t\t${sum}`);
+    console.log(`부가세\t\t\t${vat}`);
+    console.log(`------------------------------`);
+    console.log(`총합계\t\t\t${total}`);
+    console.log(`받은금액\t\t${money}`);
+    console.log(`잔돈\t\t\t${charge}`);
+    console.log(`------------------------------`);
+    console.log(`2023. 01. 20 13:03:00`);
+  </script>
   </body>
 </html>

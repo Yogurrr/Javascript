@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Examples</title>
+  </head>
+  <body>
+    <script>
+      console.log("1. ");
+      console.log("*   *     **     ****    ****    *   *        /////");
+      console.log("*   *    *  *    *   *   *   *   *   *       | 0 0 |");
+      console.log("*****   *    *   ****    ****     * *       (|  ^  |)");
+      console.log("*   *   ******   *   *   *   *     *         | [_] |");
+      console.log("*   *   *    *   *    *  *    *    *          -----");
+      console.log("            +---+");
+      console.log("            |   |");
+      console.log("        +---+---+");
+      console.log("        |   |   |");
+      console.log("    +---+---+---+      /\\___/\\     ______");
+      console.log("    |   |   |   |     ( '   ' )   / Hello \\");
+      console.log("+---+---+---+---+     (   -   )  <  Junior |");
+      console.log("|   |   |   |   |      |  |  |    \\ Coder! /");
+      console.log("+---+---+---+---+     (___|___)    ￣￣￣￣");
+
+      let soju = 3000;
+      let sojuAmt = 2;
+      let sojuSum = soju * sojuAmt;
+      let nnchk = 12000;
+      let nnchkAmt = 1;
+      let nnchkSum = nnchk * nnchkAmt;
+      let sum = soju + nnchk;
+      let money = 50000;
+      let change = money - sum;
+
+      let buga = sojuSum * 0.1 + nnchkSum * 0.1;
+      let bugaSum = sojuSum * 0.9 + nnchkSum * 0.9;
+
+      document.write("2. <br>");
+      document.write("[ 음식나라 ]<br>");
+      document.write("------------------------<br>");
+      document.write(
+        `소주 \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+      ${sojuAmt}`,
+        ` \u00A0\u00A0\u00A0\u00A0${sojuSum}<br>`
+      );
+      document.write(
+        `너나치킨 \u00A0${nnchkAmt} \u00A0\u00A0\u00A0${nnchkSum}<br>`
+      );
+      document.write("------------------------<br>");
+      document.write(
+        "과세합계",
+        `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+${bugaSum}<br>`
+      );
+      document.write(`부가세\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+\u00A0\u00A0${buga}<br>`);
+      document.write("------------------------<br>");
+      document.write(`총합계\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+${sum}<br>`);
+      document.write(`받은금액\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+${money}<br>`);
+      document.write(`잔돈\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0
+\u00A0\u00A0\u00A0${change}<br>`);
+      document.write("------------------------<br>");
+      document.write("2023. 01. 19 18:13:00<br>");
+    </script>
+  </body>
+</html>

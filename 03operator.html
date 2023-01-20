@@ -16,10 +16,10 @@
     </p>
 
     <script>
-      10; // 리터럴 표현식
+      /*10; // 리터럴 표현식
       sum; // 식별자 표현식
       10 + 20; // 연산자 표현식
-      Date(); // 함수 표현식
+      Date(); // 함수 표현식*/
     </script>
 
     <h2>연산자</h2>
@@ -84,11 +84,11 @@
       document.write("x = x + 1 : ", x, "<br>");
 
       x = 1;
-      x += 1;   // syntactic sugar
-                // 프로그래밍 코드를 좀 더 sweet하게
-                // 작성할 수 있도록 도와주는 문법
-                // 더욱 간결하고, 명확한 표현이 가능
-                //
+      x += 1; // syntactic sugar
+      // 프로그래밍 코드를 좀 더 sweet하게
+      // 작성할 수 있도록 도와주는 문법
+      // 더욱 간결하고, 명확한 표현이 가능
+      //
       document.write("x += 1 : ", x, "<br>");
     </script>
 
@@ -101,8 +101,8 @@
       y = 5;
 
       document.write("10 > 5 : ", x > y, "<br>");
-      document.write("10 == 5 : ", x == y, "<br>");  // 값의 동일 여부 비교
-      document.write("10 === 5 : ", x === y, "<br>");  // 값, 타입의 통일 여부 비교
+      document.write("10 == 5 : ", x == y, "<br>"); // 값의 동일 여부 비교
+      document.write("10 === 5 : ", x === y, "<br>"); // 값, 타입의 통일 여부 비교
 
       y = 10;
       document.write("10 == 10 : ", x == y, "<br>");
@@ -112,7 +112,7 @@
       document.write("10 == 10n : ", x == y, "<br>");
       document.write("10 === 10n : ", x === y, "<br>");
 
-      y = '10';
+      y = "10";
       document.write("10 == 10n : ", x == y, "<br>");
       // 자바스크립트에서 == 연산자로 비교 시
       // 변수들의 자료형을 일치시키는 암묵적 형변환 발생
@@ -128,7 +128,7 @@
       // 평균점수가 60 이상이면 '합격', 아니면 '불합격'이라 출력
       let jumsu = 78.5;
 
-      let result = (jumsu >= 60 ? `합격` : `불합격`);
+      let result = jumsu >= 60 ? `합격` : `불합격`;
       document.write(`평균점수가 ${jumsu}라면, 결과는 ${result}입니다. <br>`);
     </script>
 
@@ -151,7 +151,11 @@
       document.write(`1 || 0 : `, 1 || 0, "<br>");
       document.write(`null || 1 : `, null || 1, "<br>");
       document.write(`undefined || 1 : `, undefined || 1, "<br>");
-      document.write(`null || 1 || undefined : `, null || 1 || undefined, "<br>");
+      document.write(
+        `null || 1 || undefined : `,
+        null || 1 || undefined,
+        "<br>"
+      );
 
       // FF - F, FT - F, TF - F, TT - T
       // val = val1 && val2 && val3 의 경우
@@ -159,13 +163,85 @@
       document.write(`1 && 0 : `, 1 && 0, "<br>");
       document.write(`null && 1 : `, null && 1, "<br>");
       document.write(`undefined && 1 : `, undefined && 1, "<br>");
-      document.write(`null && 1 && undefined : `, null && 1 && undefined, "<br>");
+      document.write(
+        `null && 1 && undefined : `,
+        null && 1 && undefined,
+        "<br>"
+      );
       document.write(`null && 1 && 2 : `, null && 1 && 2, "<br>");
     </script>
 
-    <script> // 기호를 1개 쓰면 단축 연산 안 됨
+    <script>
+      // 기호를 1개 쓰면 단축 연산 안 됨
       document.write(`null | 1 | undefined : `, null | 1 | undefined, "<br>");
       document.write(`null & 1 & 2 : `, null & 1 & 2, "<br>");
+    </script>
+
+    <h2>변수의 자료형 알아보기</h2>
+    <p>typeof 함수를 이용하면 변수나 값의 자료형을 출력함</p>
+
+    <script>
+      //자바스크립트에서는 typeof가 함수가 아니라 연산자
+      document.write(`숫자 10의 자료형: `, typeof 10, "<br>");
+      document.write(`문자 abc의 자료형: `, typeof "abc", "<br>");
+      document.write(`숫자 10n의 자료형: `, typeof 10n, "<br>");
+      document.write(`undefined의 자료형: `, typeof undefined, "<br>");
+    </script>
+
+    <h2>자료형 변환</h2>
+    <p>
+      함수와 연산자에 전달되는 값은 표현식에 적합하게 적절한 자료형으로 변환됨
+      (묵시적 형변환)
+    </p>
+    <p>
+      하지만, 상황에 따라 의도를 갖고 원하는 자료형으로 직접 변환해야 하는
+      경우도 있음 (명시적 형변환)
+    </p>
+    <p>어떤 값을 숫자형으로 변환하고 싶다면 Number() 사용</p>
+    <p>어떤 값을 문자형으로 변환하고 싶다면 String() 사용</p>
+    <p>어떤 값을 불리언형으로 변환하고 싶다면 Boolean() 사용</p>
+
+    <script>
+      // 나이 계산 v1: 현재 연도 - 생년 연도
+      /*let birthyear = prompt(`생년 연도는?`);
+      let age = 2023 - birthyear + 1;
+
+      document.write(`생년 연도: `, birthyear, "<br>");
+      document.write(`당신의 나이: `, age, "<br>");*/
+    </script>
+
+    <script>
+      // ex) 성적 처리 프로그램 v2
+      // 이름, 국어, 영어, 수학을 입력 받아
+      // 총점, 평균, 학점을 계산한 뒤 결과 출력
+      // 단, 학점은 수우미양가 중 하나가 출력되어야 함
+      let name = prompt(`이름은? `);
+      let kor = Number(prompt(`국어: `));
+      let eng = Number(prompt(`영어: `));
+      let mat = Number(prompt(`수학: `));
+      let tot = kor + eng + mat;
+      let avg = tot / 3;
+      let grd =
+        avg >= 90
+          ? `수`
+          : avg < 90 && avg >= 80
+          ? `우`
+          : avg < 80 && avg >= 70
+          ? `미`
+          : avg < 70 && avg >= 60
+          ? `양`
+          : "가";
+
+      document.write(`<h1>성적처리 v2</h1>`);
+      document.write(`
+이름: ${name}<br>
+국어: ${kor}<br>
+영어: ${eng}<br>
+수학: ${mat}<br>
+총점: ${tot}<br>
+평균: ${avg}<br>
+학점: ${grd}<br>
+      `);
     </script>
   </body>
 </html>

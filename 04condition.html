@@ -125,9 +125,9 @@
       let year = 2022;
 
       if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-        document.write(year, ` - 윤년입니다<br><br>`)
+        document.write(year, ` - 윤년입니다<br><br>`);
       } else {
-        document.write(year, ` - 평년입니다<br><br>`)
+        document.write(year, ` - 평년입니다<br><br>`);
       }
     </script>
 
@@ -170,7 +170,7 @@
 
       if (userid === uid && passwd === pwd) {
         // 로그인 성공 시 출력할 문자열 정의
-        result = (`<h3>회원인증에 성공했습니다!</h3>`);
+        result = `<h3>회원인증에 성공했습니다!</h3>`;
       }
 
       document.write(result);
@@ -206,8 +206,10 @@
     </script>
 
     <h2>다중 조건문</h2>
-    <p>다중 조건에 대한 만족여부에 따라 코드블록을 실행하려면 if ~ else 뒤에
-      if ~ else문을 더 추가함</p>
+    <p>
+      다중 조건에 대한 만족여부에 따라 코드블록을 실행하려면 if ~ else 뒤에 if ~
+      else문을 더 추가함
+    </p>
 
     <script>
       // 평균 점수에 따라 '수우미양가'로 성적 결과 출력
@@ -287,18 +289,284 @@
       document.write(result);
     </script>
 
+    <h2>switch</h2>
     <p>다중 조건 if문을 가독성 있게 작성한 조건문</p>
     <p>
       switch의 표현식을 평가하여 그 값의 일치여부에 따라 case문 아래의 코드
-      블럭을 실행하는 구조
+      블록을 실행하는 구조
     </p>
     <p>
-      표현식의 평가값과 일치하는 case가 없는 경우 default문의 코드블럭을 실행함
+      표현식의 평가값과 일치하는 case가 없는 경우 default문의 코드블록을 실행함
     </p>
     <p>
       단, 표현식의 평가값과 일치하는 case문이 실행되더라도 break문이 없으면,
       switch문이 중단되지 않고 나머지 case문을 실행하게 됨 - full through
+      (위에서 아래로 순서대로 실행하기 때문)
     </p>
+    <p>switch(조건식) {</p>
+    <p>case 값1: 코드블록; break;</p>
+    <p>case 값2: 코드블록; break;</p>
+    <p>....</p>
+    <p>default: 코드블록; break;</p>
+    <p>}</p>
+
+    <script>
+      // 짝수, 홀수 여부 출력 v3
+      num = 6;
+      result = "";
+
+      switch (num % 2) {
+        case 0:
+          result = `는(은) 짝수입니다!! <br><br>`;
+          break;
+        case 1:
+          result = `는(은) 홀수입니다!! <br><br>`;
+          break;
+      }
+
+      document.write(num, result);
+    </script>
+
+    <script>
+      // 오전, 오후 구분하여 출력 v3
+      time = "23:47:40";
+      hour = time[0] + time[1];
+      result = "";
+
+      /*switch (hour < 12) {
+        case true: result = "시는 오전입니다!!<br><br>"; break;
+        default: result =  "시는 오후입니다!!<br><br>"; break;
+      }*/
+
+      switch (
+        hour // hour는 문자형
+      ) {
+        case "00":
+        case "01":
+        case "02":
+        case "03":
+        case "04":
+        case "05":
+        case "06":
+        case "07":
+        case "08":
+        case "09":
+        case "10":
+        case "11":
+          result = ` 오전입니다!! <br><br>`;
+          break;
+        case "12":
+        case "13":
+        case "14":
+        case "15":
+        case "16":
+        case "17":
+        case "18":
+        case "19":
+        case "20":
+        case "21":
+        case "22":
+        case "23":
+          result = ` 오후입니다!! <br><br>`;
+          break;
+        case "24":
+          result = ` 오전입니다!! <br><br>`;
+          break;
+      }
+
+      document.write(hour, result);
+    </script>
+
+    <script>
+      // 짝수, 홀수 여부 출력 v4
+      num = 9;
+      result = "";
+
+      switch (num % 2 === 0) {
+        case true:
+          result = `는(은) 짝수입니다!! <br><br>`;
+          break;
+        case false:
+          result = `는(은) 홀수입니다!! <br><br>`;
+          break;
+      }
+
+      document.write(num, result);
+    </script>
+
+    <script>
+      // 오전, 오후 구분하여 출력 v4
+      time = "23:47:40";
+      hour = time[0] + time[1];
+      result = "";
+
+      switch (hour < 12) {
+        case true:
+          result = "시는 오전입니다!!<br><br>";
+          break;
+        case false:
+          result = "시는 오후입니다!!<br><br>";
+          break;
+      }
+
+      document.write(hour, result);
+    </script>
+
+    <script>
+      // 월을 입력하면 영어로 변환해서 출력
+      let month = 12;
+      result = "";
+
+      switch (month) {
+        case 1:
+          result = `January`;
+          break;
+        case 2:
+          result = `February`;
+          break;
+        case 3:
+          result = `March`;
+          break;
+        case 4:
+          result = `April`;
+          break;
+        case 5:
+          result = `May`;
+          break;
+        case 6:
+          result = `June`;
+          break;
+        case 7:
+          result = `July`;
+          break;
+        case 8:
+          result = `August`;
+          break;
+        case 9:
+          result = `September`;
+          break;
+        case 10:
+          result = `October`;
+          break;
+        case 11:
+          result = `November`;
+          break;
+        case 12:
+          result = `December`;
+          break;
+        default:
+          result = `잘못 입력하셨습니다!`;
+          break;
+      }
+
+      document.write(month, `는 `, result, `<br><br>`);
+    </script>
+
+    <script>
+      // 월, 윤년여부(Y/N)을 입력하면 해당 월의 마지막 날을 출력
+      // 1, 3, 5, 7, 8, 10, 12 - 31일
+      // 4, 6, 9, 11 - 30일
+      // 2 - 윤년 여부에 따라 28(N)일 or 29(Y)일
+      month = 2;
+      isLeapYear = `Y`;
+      let lastDay = 0;
+
+      switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          lastDay = `31`;
+          break;
+
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          lastDay = `30`;
+          break;
+
+        case 2:
+          switch (isLeapYear) {
+            case `Y`:
+              lastDay = `29`;
+              break;
+            case `N`:
+              lastDay = `28`;
+              break;
+          }
+          break;
+        default:
+          lastDay = `잘못 입력하셨습니다!`;
+          break;
+      }
+
+      document.write(`${month}월은 ${lastDay} <br><br>`);
+    </script>
+
+    <script>
+      // 평균 점수에 따라 '수우미양가'로 성적 결과 출력 v2
+      /*avg = 100;
+      let grade = ``;
+
+      switch (avg >= 90) {
+        case true:
+          switch (avg <= 100) {
+            case true: grade = `수`; break;
+            default: grade = `입력할 수 없습니다!`; break;
+          } break;
+        default:
+          switch (avg >= 80) {
+            case true:
+              grade = `우`;
+              break;
+            default:
+              switch (avg >= 70) {
+                case true:
+                  grade = `미`;
+                  break;
+                default:
+                  switch (avg >= 60) {
+                    case true:
+                      grade = `양`;
+                      break;
+                    default:
+                      grade = `가`;
+                      break;
+                  }
+              }
+          }
+      }
+
+      document.write(`${avg}점은 ${grade}<br>`);*/
+
+      avg = 85.1;
+      result = ``;
+
+      switch (parseInt(avg / 10)) {
+        case 10:
+        case 9:
+          result = `수`;
+          break;
+        case 8:
+          result = `우`;
+          break;
+        case 7:
+          result = `미`;
+          break;
+        case 6:
+          result = `양`;
+          break;
+        default:
+          result = `가`;
+          break;
+      }
+
+      document.write(avg, `점은 `, result, `<br>`);
+    </script>
 
     <p>
       javascript 한정으로 switch의 case문에 비교 연산자를 이용한 범위를 검사하는

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Prac</title>
+</head>
+<body>
+    <script>
+      let result = ``;
+
+      for (let i = 1; i <= 100; i++) {
+        result += i + ` `;
+        if (i % 10 === 0) {
+            result += `<br>`;
+        }
+      }
+
+      document.write(result, `<br>`);
+    </script>
+
+    <script>
+        let sum = 0;
+
+        for(let k = 1; k <= 10; k++) {
+            sum += Number(k + ` `);
+            // sum -= k: sum = result - k
+            // sum += k: sum = result + k
+            // k 뒤에 + ` `를 붙이거나 sum을 ``라고 선언하면
+            //    문자열 취급을 받음!!!
+            // 그래서 Number 함수로 숫자로 만들면 총합 나옴!!!!!
+            // sum = sum + (k + ` `)
+        }
+
+        document.write(sum);
+    </script>
+</body>
+</html>

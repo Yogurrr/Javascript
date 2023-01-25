@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>searching_date</title>
+</head>
+<body>
+    <script>
+        const answer = `2023-01-20`;
+        function getDayOfWeek() {
+
+            const week = ['일요일', '월요일', '화요일', '수요일', '목요일',
+                '금요일', '토요일'];
+
+            const dayOfWeek = week[new Date(answer).getDay()];
+
+            return dayOfWeek;
+
+        }
+
+        let qq = new Date(answer);
+
+        let year = qq.getFullYear();
+        let month = qq.getMonth() + 1;
+        let date = qq.getDate();
+        let dayLabel = getDayOfWeek();
+
+        document.write(`${year}년 ${month}월 ${date}일은 <h3>${dayLabel}</h3>`);
+    </script>
+
+    <p></p>
+</body>
+</html>

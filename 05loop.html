@@ -95,9 +95,138 @@
             result += i + ` `;
         }
 
-        document.write(result);
+        document.write(result, `<br><br>`);
     </script>
 
-    <p></p>
+    <script>
+        // 구구단 출력 v1
+        document.write(`2 x 1 = 2 <br>`);
+        document.write(`2 x 2 = 4 <br>`);
+        document.write(`2 x 3 = 6 <br>`);
+        document.write(`2 x 4 = 8 <br>`);
+        document.write(`2 x 5 = 10 <br>`);
+        document.write(`2 x 6 = 12 <br>`);
+        document.write(`2 x 7 = 14 <br>`);
+        document.write(`2 x 8 = 16 <br>`);
+        document.write(`2 x 9 = 18 <br><br>`);
+    </script>
+
+    <script>
+        // 구구단 출력 v2
+        let dan = 5;
+
+        for (i = 1; i <= 9; ++i) {
+            document.write(`${dan} x ${i} = ${dan*i} <br>`);
+        }
+    </script>
+
+    <h2>무한 반복문 - for</h2>
+    <p>for문의 경우 초기식, 판별식, 증감식을 비워두면 반복을 끊임없이 실행하는
+        무한 반복문이 됨</p>
+
+    <script>
+        //  for ( ; ; ) {
+        //      document.write(`Hello, World!! <br>`)
+        //  }
+    </script>
+
+    <h2>중첩 반복문 - for</h2>
+    <p>2개 이상의 for문을 겹쳐 사용하는 반복문</p>
+    <p>복잡한 작업은 반복 실행할 때 유용하게 사용</p>
+
+    <script>
+        // 별* 5개씩 5줄 출력
+        for (let i = 1; i <= 5; ++i) {
+            document.write(`***** <br>`);
+        }
+        document.write(`<br>`)
+    </script>
+
+    <script>
+        // 10층짜리 별* 피라미드 출력
+        for (let j = 1; j <= 10; ++j) {  // 층 반복문
+            for (let i = 1; i <= j; ++i) {  // 별 반복문
+                document.write(`*`);
+            }
+            document.write(`<br>`);
+        }
+        document.write(`<br>`);
+    </script>
+
+    <script>
+        // 10층짜리 별* 역피라미드 출력
+        for (let j = 10; j >= 1; --j) {  // 층 반복문
+            for (let i = 1; i <= j; ++i) {  // 별 반복문
+                document.write(`*`);
+            }
+            document.write(`<br>`);
+        }
+        document.write(`<br>`)
+    </script>
+
+    <script>
+        // 10층짜리 별* 역피라미드 출력 v2
+        for (let j = 1; j <= 10; ++j) {  // 층 반복문
+            for (let i = 10; i >= j; --i) {  // 별 반복문
+                document.write(`*`);
+            }
+            document.write(`<br>`);
+        }
+        document.write(`<br>`);
+    </script>
+
+    <script>
+        // 구구단 전체 출력 v4
+        for (j = 1; j <= 9; ++j) {  // 행 반복문
+            for (i = 2; i <= 5; ++i) {  // 단 반복문
+                document.write(`${i} x ${j} = ${i * j}\u00a0\u00a0\u00a0\u00a0`);
+            }
+            document.write(`<br>`);
+        }
+        document.write(`<br>`);
+
+        for (j = 1; j <= 9; ++j) {
+            for (i = 6; i <= 9; ++i) {
+                document.write(`${i} x ${j} = ${i * j}\u00a0\u00a0\u00a0\u00a0`);
+            }
+            document.write(`<br>`);
+        }
+    </script>
+
+    <h2>break</h2>
+    <p>원하는 시점에 반복문이나 코드블록에서 벗어나기 위해 사용</p>
+
+    <script>
+        // 1~1000까지의 총합을 계산
+        // 단, 총합이 10000을 넘으면 계산을 중단함
+        sum = 0;
+
+        //초기식을 전역변수처럼 선언할 수도 있음 (for 식에서 빼서)
+        for (i = 1; i <= 1000; ++i) {
+            if (sum > 10000) { break; }
+            sum += i;
+        }
+
+        document.write(i, `, `, sum);
+    </script>
+
+    <h2>continue</h2>
+    <p>반복문의 코드실행을 현 지점에서 중단하고 반복문의 증감식이나 조건식으로
+        제어를 이동시킴</p>
+    <p>즉, 반복을 일시적으로 건너 뛰어 다음 반복으로 넘어감</p>
+
+    <script>
+        // 1~1000까지의 총합을 계산
+        // 단, 5의 배수나 7의 배수는 계산에서 제외
+        sum = 0;
+
+        for (let i = 1; i <= 1000; ++i) {
+            if (i % 5 === 0 || i % 7 === 0) { continue; }
+            document.write(i, ` `);
+            sum += i;
+        }
+
+        document.write(sum);
+    </script>
 </body>
 </html>

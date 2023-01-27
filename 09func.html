@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자바스크립트 함수2</title>
+  </head>
+  <body>
+    <h1>자바스크립트 함수</h1>
+    <h2>함수 외부 참조</h2>
+    <p>
+      함수 정의를 독립적인 소스파일에 작성하고 사용하려는 곳에서 이것을 호출해서
+      사용할 수 있음
+    </p>
+    <p>script 태그의 src 속성을 이용해서 소스파일을 지정해야 함</p>
+
+    <script src="js/08func.js"></script>
+    <script>
+      let year = 2023;
+      let result = computeLeapYear(year);
+      document.write(result, `<br><br>`);
+
+      showStarPyramid(10);
+      showStarPyramid(7);
+      showStarPyramid(3);
+      document.write(`<br>`);
+
+      document.write(showAMPM(`20:00:00`), `<br>`);
+      document.write(showAMPM(`11:00:00`));
+      document.write(`<br><br>`);
+
+      computeSungJuk(99, 98, 99);
+      computeSungJuk(33, 44, 55);
+    </script>
+
+    <h2>익명 함수</h2>
+    <p>자바스크립트의 함수는 1급 시민이므로 값으로 취급할 수 있음</p>
+    <p>
+      따라서, 함수를 익명으로 정의한 후 변수에 대입하는 식으로 함수를 선언할
+      수도 있음
+    </p>
+
+    <script>
+      let sayHello4 = function (msg) {
+        return `Hello, ${msg}!! <br>`;
+      };
+
+      result = sayHello4(`1급 시민`);
+      document.write(result);
+    </script>
+
+    <h2>화살표 함수</h2>
+    <p>ES6에서 추가된 기능으로 함수 선언을 간단하게 작성 가능</p>
+    <p>즉, function이라는 키워드 대신 =>를 이용해서 함수를 선언할 수 있음</p>
+
+    <script>
+      // 변수명 = () => { 코드 }
+      let sayHello5 = (msg) => {
+        return `Hello, ${msg}!! <br>`;
+      };
+
+      result = sayHello5(`화살표 함수`);
+      document.write(result);
+    </script>
+
+    <script>
+      // 변수명 = () => 코드
+      let sayHello6 = (msg) => document.write(`Hello, ${msg}!! <br>`);
+
+      sayHello6(`괄호 생략 화살표 함수`);
+    </script>
+
+    <script>
+      // 변수명 = () => 코드
+      let sayHello7 = (msg) => `Hello, ${msg}!! <br>`;
+
+      result = sayHello7(`괄호, 리턴 생략 화살표 함수`);
+      document.write(result, `<br>`);
+    </script>
+
+    <script>
+      // 부가세 계산 프로그램: computeVAT
+      // 금액을 입력하면 부가세를 계산해서 출력
+
+      // 선언형
+      function computeVAT(price) {
+        VAT = 0.1;
+        result = price * VAT;
+        document.write(`${price.toLocaleString()}원의 부가세는
+${result.toLocaleString()}원입니다 <br>`);
+      }
+
+      computeVAT(20000);
+      computeVAT(7000);
+      document.write(`<br>`);
+
+      // 익명
+      let computeVATv2 = function (price) {
+        VAT = 0.1;
+        result = price * VAT;
+        document.write(`${price.toLocaleString()}원의 부가세는
+${result.toLocaleString()}원입니다 <br>`);
+      };
+
+      computeVATv2(50000);
+      computeVATv2(4500);
+      document.write(`<br>`);
+
+      // 화살표 v1
+      let computeVATv3 = (price) => {
+        VAT = 0.1;
+        result = price * VAT;
+        return `${price.toLocaleString()}원의 부가세는
+${result.toLocaleString()}원입니다 <br>`;
+      };
+
+      answer = computeVATv3(70000);
+      document.write(answer);
+      document.write(`<br>`);
+
+      // 화살표 v2 (괄호 생략) - 함수가 여러 줄일 때는 괄호를 생략할 수 없음
+      let computeVATv4 = (price) =>
+        document.write(`${price.toLocaleString()}원의 부가세는
+${(price * 0.1).toLocaleString()}원입니다 <br>`);
+
+      computeVATv4(5500);
+      document.write(`<br>`);
+
+      // 화살표 v3 (괄호, 리턴 생략)
+      let computeVATv5 = (price) =>
+        `${price.toLocaleString()}원의 부가세는
+${(price * 0.1).toLocaleString()}원입니다 <br>`;
+
+      result = computeVATv5(67000);
+      document.write(result);
+    </script>
+  </body>
+</html>

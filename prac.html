@@ -43,7 +43,176 @@
             // 총합 하나만 나오지 않고 숫자 다 나오게 됨
         }
 
-        document.write(sum);
+        document.write(sum, `<br><br>`);
+    </script>
+
+    <script>
+        answer = 1;
+        nums = [];
+
+        /*while (true) {
+            num = parseInt(prompt(`숫자:`));
+            if (num === 1) { break; }
+            answer *= num;
+            nums.push(num);
+        }
+
+        document.write(nums, ` = `, answer);*/
+    </script>
+
+    <script>
+        let name = ``;
+        let names = [];
+
+        /*while (true) {
+            name = prompt(`이름:`);
+            if (name === `0`) { break; }
+            names.push(name);
+        }
+
+        document.write(names, `<br><br>`);*/
+    </script>
+
+    <script>
+        let year = 1989;
+        let day = Math.round(((year - 1) * 365 + (year - 1) / 4 - (year - 1) / 100 +
+            (year - 1) / 400 + 1) % 7);
+
+        result = `<b>January ${year}</b><br>`;
+        result += `----------------------------------------------<br>`
+        result += `<b>Sun\u00a0\u00a0 Mon\u00a0\u00a0
+                    Tue\u00a0\u00a0 Wed\u00a0\u00a0
+                    Thu\u00a0\u00a0 Fri\u00a0\u00a0 Sat</b><br>`
+
+        for (let i = 0; i < day; ++i) {
+            result += `\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0`;
+        }
+
+        for (let i = 1; i <= 31; ++i) {
+            result += `\u00a0${i}\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0`;
+            if (i % 7 === (7 - day) && day !== 0) { result += `<br>` }
+            else if (i % 7 === 0 && day === 0) { result += `<br>` }
+        }
+
+        document.write(result, `<br><br>`);
+    </script>
+
+    <script>
+        let SungJuk3 = {
+            name: ``,
+            kor: 0,
+            eng: 0,
+            mat: 0,
+            tot: 0,
+            avg: 0.0,
+            grd: ``
+        }
+
+        /*let computeSungJuk = (sj) => {
+            for (let i = 0; i <= 2; ++i) {
+                sj.name.add(prompt(`${i+1}번 학생의 이름은?`));
+                sj.kor.add(parseInt(prompt(`${i+1}번 학생의 국어는?`)));
+                sj.eng.add(parseInt(prompt(`${i+1}번 학생의 영어는?`)));
+                sj.mat.add(parseInt(prompt(`${i+1}번 학생의 수학은?`)));
+
+                sj.tot.add(sj.kor[i] + sj.eng[i] + sj.mat[i]);
+                sj.avg.add(sj.tot[i] / 3);
+                switch (parseInt(sj.avg / 10)) {
+                    case 10:
+                    case 9:
+                        sj.grd = `수`;
+                        break;
+                    case 8:
+                        sj.grd = `우`;
+                        break;
+                    case 7:
+                        sj.grd = `미`;
+                        break;
+                    case 6:
+                        sj.grd = `양`;
+                        break;
+                    default:
+                        sj.grd = `가`;
+                        break;
+                }
+            }
+        }
+
+        let showSungJuk = (sj) => {
+            return `이름: ${sj.name[i]}<br> 국어: ${sj.kor[i]}<br>
+            영어: ${sj.eng[i]}<br> 수학: ${sj.mat[i]}<br> 총점: ${sj.tot[i]}<br>
+            평균: ${sj.avg[i]}<br> 학점: ${sj.grd[i]}<br>`;
+        }
+
+        computeSungJuk(SungJuk3);
+        document.write(showSungJuk(SungJuk3));*/
+    </script>
+
+    <script>
+        let aa = new Date();
+        let bb = new Date(1675215971000);
+        let cc = new Date(`February 1, 2023, 10:46:11`);
+        let dd = new Date(2023, 2 - 1, 1, 10, 46, 11);
+
+        document.write(aa, `<br>`);
+        document.write(bb, `<br>`);
+        document.write(cc, `<br>`);
+        document.write(dd, `<br><br>`);
+    </script>
+
+    <script>
+        function lottoNum (min, max) {
+
+            let lotto = [];
+
+            let makeNum = () => {
+                if (lotto.length < 6) {
+                    let n = Math.floor(Math.random() * (max - min + 1)) + min;
+                    if (notSame(n)) {
+                        lotto.push(n);
+                    }
+                    makeNum();
+                }
+
+                function notSame (n) {
+                    return lotto.every((e) => n !== e);
+                }
+            }
+            makeNum();
+            document.write(lotto, `<br><br>`);
+        }
+
+        lottoNum(1, 45);
+    </script>
+
+    <script>
+        let randInt2 = (min, max) => {
+            for (let i = 1; i <= 6; ++i)
+            {
+                result = Math.floor(Math.random() * (max - min + 1)) + min;
+                document.write(result, ` `);
+            }
+        }
+
+        randInt2(1, 45);
+    </script>
+
+    <script>
+        // 주민번호를 하나 입력받아
+        // 올바른 주민번호인지 여부를 출력하는 함수 작성
+
+        // 주민번호 검증 알고리즘
+        // 1) 주민번호 앞부터 12자리(지역번호까지)까지
+        //    각 자리를 2~9까지 곱한다.
+        // 2) 계산되어 나온 숫자를 모두 더한다.
+        // 3) 더한 숫자를 11로 나눈 나머지를 구한다.
+        // 4) 11에서 나머지를 뺀 값의 마지막 숫자와
+        //    13번째 숫자의 일치여부 확인
+
+        // 1  2  3  4  5  6 -  1  2  3  4  5  6      7
+        // 2  3  4  5  6  7    8  9  2  3  4  5
+        // 2  6 12 20 30 42    8 18  6 12 20 30
+        // ? == 7
     </script>
 
     <p></p>

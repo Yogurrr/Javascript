@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자바스크립트 정규표현식</title>
+  </head>
+  <body>
+    <h1>자바스크립트 정규표현식</h1>
+    <h2>개요</h2>
+    <p>문자열에 포함된 문자 조합(패턴)을 찾기 위해 사용하는 표현식</p>
+    <p>
+      주로 사용자가 입력한 값이 어떤 조건을 만족하는지 검사할 때 사용 - 이메일,
+      전화번호, 아이디/비밀번호 등
+    </p>
+
+    <h2>정규식 작성 규칙</h2>
+    <p>
+      정규식은 /로 감싸는 정규식 리터럴을 사용하는 방법과 RegExp하는 객체의
+      생성자를 사용하는 방법이 있음
+    </p>
+
+    <p>표현식.exec : 정규식을 통해 문자열 패턴을 찾고 배열 반환</p>
+    <p>표현식.test : 정규식에 대응하는 문자열인지 여부 검사</p>
+    <p>표현식.match : 정규식에 대응하는 문자열을 찾고 배열로 반환</p>
+
+    <script>
+      const re = /World/;
+      let str1 = `Hello, World, world!!`;
+
+      document.write(re.exec(str1), `<br>`);
+      document.write(re.test(str1), `<br>`);
+      document.write(str1.match(re), `<br><br>`);
+    </script>
+
+    <h2>정규표현식 플래그</h2>
+    <p>
+      표현식 수행 시 추가적인 작동 방식을 지정하기 위해 플래그를 사용할 수 있음
+    </p>
+    <p>i: 대소문자 구분 없이 찾음</p>
+    <p>g: 문자열 전체 범위 내에서 찾음</p>
+    <p>m: 여러 줄로 구성된 문자열에서 패턴 검색</p>
+
+    <script>
+      let re2 = /world/gi;
+
+      document.write(re2.exec(str1), `<br>`);
+      document.write(re2.test(str1), `<br>`);
+      document.write(str1.match(re2), `<br><br>`);
+    </script>
+
+    <h2>정규표현식 패턴 문자</h2>
+    <p>
+      정규식에서 사용 가능한 패턴문자들을 조합하면 단순 문자열 뿐만 아니라
+      복잡한 문자열 패턴을 문자열 패턴을 찾을 수 있음
+    </p>
+    <p>.: 임의의 문자 하나를 의미</p>
+    <p>^(캐럿): 문자열의 시작을 의미</p>
+    <p>$: 문자열의 끝을 의미(찾을 내용 뒤에 문자를 써야함)</p>
+
+    <p>[]: 임의의 문자열들 중 개별 문자의 그룹을 의미</p>
+    <p>[^]: 지정한 문자들을 제외한 나머지 문자들을 의미</p>
+    <p>-: 문자들의 범위 지정</p>
+    <p>|: 여러 패턴들 중 하나를 선택한다는 의미</p>
+
+    <p>*: 특정 패턴이 0회 이상 반복한다는 의미</p>
+    <p>+: 특정 패턴이 1회 이상 반복한다는 의미</p>
+    <p>?: 특정 패턴이 0회 또는 1회 반복한다는 의미</p>
+
+    <p>{n}: 특정 패턴이 n회 반복한다는 의미</p>
+    <p>{n, m}: 특정 패턴이 최소 n ~ 최대 m회 반복한다는 의미</p>
+
+    <h2>아이디 패턴</h2>
+    <p>아이디는 소문자, 숫자, _, - 등을 사용 길이는 최소 6자 이상, 최대 15자 이하</p>
+
+    <script>
+        const re3 = /^[a-z0-9_-]{6,15}$/;
+        // {} 안에 숫자 쓸 때 콤마 사이에 띄어쓰기 하면 안 먹음!!!
+
+        let userid1 = 'abc12345';
+        let userid2 = 'A123xyz';
+        let userid3 = 'a123XYZ';
+        let userid4 = '123abc';
+        let userid5 = 'abc123xyz987abc123';
+
+        document.write(re3.test(userid1), `<br>`);
+        document.write(re3.test(userid2), `<br>`);
+        document.write(re3.test(userid3), `<br>`);
+        document.write(re3.test(userid4), `<br>`);
+        document.write(re3.test(userid5), `<br><br>`);
+
+        document.write(userid1.match(re3), `<br>`);
+        document.write(userid2.match(re3), `<br>`);
+        document.write(userid3.match(re3), `<br>`);
+        document.write(userid4.match(re3), `<br>`);
+        document.write(userid5.match(re3), `<br><br>`);
+    </script>
+
+    <h2>이메일 패턴</h2>
+    <p>이메일 주소는 소문자, 숫자, _, - 등을 사용, 또한, @와 .이 반드시 포함,
+        도메인은 최소 2자에서 3자까지만 허용</p>
+
+    <script>
+        const re4 = /^[a-z0-9_-]+@[a-z0-9_-]+[a-z\.]{4,6}/;
+
+        let email1 = `abc123@xyz987.com`;
+        let email2 = `987xyz@abc123.co.kr`;
+        let email3 = `gildong.hong@chosun.co.kr`;
+
+        document.write(re4.test(email1), `<br>`);
+        document.write(re4.test(email2), `<br>`);
+        document.write(re4.test(email3), `<br><br>`);
+
+        document.write(email1.match(re4), `<br>`);
+        document.write(email2.match(re4), `<br>`);
+        document.write(email3.match(re4), `<br><br>`);
+    </script>
+
+    <h2>전화번호 패턴</h2>
+    <p>국번은 2자리 ~ 3자리, 지역번호는 3자리 ~ 4자리, 나머지 번호는 4자리로 구성</p>
+
+    <script>
+        const re5 = /^0[2-6]{1,2}-[0-9]{3,4}-[0-9]{4}/;
+
+        let number1 = `02-123-4567`;
+        let number2 = `032-1234-5678`;
+        let number3 = `1234-1234-1234`;
+
+        document.write(re5.test(number3), `<br><br>`);
+        document.write(re5.test(number1), `<br>`);
+        document.write(re5.test(number2), `<br>`);
+
+        document.write(number1.match(re5), `<br>`);
+        document.write(number2.match(re5), `<br>`);
+        document.write(number3.match(re5), `<br><br>`);
+    </script>
+
+    <h2>휴대폰 번호 패턴</h2>
+    <p>통신사 번호는 (010, 011, 016, 017, 018, 019) 중 하나,
+        지역번호는 3자리 ~ 4자리, 나머지 번호는 4자리로 구성</p>
+
+    <script>
+        const re6 = /^01[016789]-[0-9]{3,4}-[0-9]{4}/;
+
+        let phonenum1 = `010-1234-5678`;
+        let phonenum2 = `015-1234-1234`;
+        let phonenum3 = `019-9874-6513`;
+
+
+        document.write(re6.test(phonenum1), `<br>`);
+        document.write(re6.test(phonenum2), `<br>`);
+        document.write(re6.test(phonenum3), `<br><br>`);
+
+        document.write(phonenum1.match(re6), `<br>`);
+        document.write(phonenum2.match(re6), `<br>`);
+        document.write(phonenum3.match(re6), `<br><br>`);
+    </script>
+
+    <p><!--정규표현식 샘플모음: https://regexlib.com--></p>
+    <p><!--정규표현식 연습 사이트: https://regexr.com--></p>
+  </body>
+</html>

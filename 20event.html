@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>자바스크립트 이벤트</title>
+  </head>
+  <body>
+    <h1>자바스크립트 이벤트</h1>
+    <h2>개요</h2>
+    <p>이벤트는 사용자가 웹페이지를 이용하면서 발생시키는 어떤 행위를 의미</p>
+    <p>
+      버튼을 클릭하거나 브라우저 크기를 변경하거나 html 문서가 브라우져에 의해
+      로드되었거나 특정 키를 눌렀거나 하는 것을 의미
+    </p>
+    <p>
+      이벤트가 발생하면 누군가는 이를 감지할 수 있어야 하고 그에 대응하는 처리를
+      호출해 주어야 함
+    </p>
+    <p>
+      브라우저는 이러한 이벤트를 감지해서 통지를 해줌으로써 사용자와의
+      상호작용을 가능하게 함
+    </p>
+
+    <h2>이벤트 핸들러</h2>
+    <p>이벤트가 발생하면 그에 맞은 반응을 해야 함</p>
+    <p>
+      이러한 반응은 보통 함수로 구현되어 있고, 이벤트 발생시 함수가 실행됨 -
+      이벤트 핸들러
+    </p>
+
+    <h2>이벤트 핸들러 등록</h2>
+    <p>
+      인라인 이벤트 핸들러 : 요소에 직접 이벤트핸들러를 등록 (비추), &lt;요소
+      'on이벤트명'='이벤트핸들러'&gt;
+    </p>
+
+    <p>
+      인라인 이벤트 핸들러 프로퍼티 : DOM 객체에 속성형태로 이벤트핸들러 등록,
+      객체명.이벤트명 = 이벤트핸들러
+    </p>
+
+    <div>
+      <button type="button" onclick="sayhello()">이벤트1</button>
+      <button type="button" id="btn2">이벤트2</button>
+      <button type="button" id="btn3">이벤트3</button>
+    </div>
+
+    <script>
+      let sayhello = () => {
+        alert("Hello, World!!");
+      };
+
+      let btn2 = document.querySelector("#btn2");
+      btn2.onclick = sayhello; // 괄호 생략!!
+    </script>
+
+    <p>
+      addEventListener : addEventListener함수를 이용해서 DOM 요소에 이벤트를
+      연결(binding)하고 해당 이벤트 발생 시 호출될 콜백함수 지정 (추천!)
+    </p>
+    <p>하나의 요소에 여러 이벤트 등록 가능</p>
+    <p>버블링과 캡처링 지원</p>
+    <p>대상.addEventListener(이벤트명, 콜백함수명)</p>
+
+    <script>
+      let sayHello = () => {
+        alert("함수가 실행되었습니다!");
+      };
+      //dom 탐색
+      let btn3 = document.querySelector("#btn3");
+      //이벤트 실행
+      btn3.addEventListener("click", sayHello);
+    </script>
+
+    <h2>간단한 폼 체크</h2>
+    <p>blur: focus가 해제되었을때 발생하는 이벤트</p>
+
+    <label for="foc">focus on</label><input type="text" id="foc" />
+    <script>
+      let fo = document.querySelector("#foc");
+      let label = document.querySelector("label");
+      fo.addEventListener("blur", () => {
+        label.innerHTML = "focus off!";
+      });
+
+      document.write(`<br><br>`);
+    </script>
+
+    <h2>이벤트 종류</h2>
+    <p>load: 웹페이지가 브라우저에 의해 읽혀졌을때</p>
+    <p>resize: 브라우저의 창의 크기를 조절했을때</p>
+    <p>scroll: 브라우저의 페이지를 스크롤했을때</p>
+
+    <h2>키보드 관련</h2>
+    <p>keydown: 키를 누르고 있을때(텍스트 입력x, 순수하게 키 입력만 감지)</p>
+
+    <!--글자수 체크 기계 만들기-->
+    <!--html부분-->
+    <h2>글자수 체크</h2>
+    <textarea id="intro" rows="5" cols="50"></textarea>
+    <div><span id="charcnt">0</span>/100</div>
+    <!--script부분-->
+    <script>
+      let intro = document.querySelector("#intro");
+      let charcnt = document.querySelector("#charcnt");
+
+      intro.addEventListener("keydown", (e) => {
+        charcnt.textContent = e.currentTarget.value.length + 1;
+        if (intro.value.length >= 100) {
+          charcnt.textContent = 100;
+          e.currentTarget.value = e.currentTarget.value.substring(0, 100);
+          // string.substring(start, end)
+        }
+      });
+    </script>
+
+    <p>keyup: 누르고 있던 키를 뗄 때(텍스트 입력중)</p>
+    <p>keypress: 키를 누르고 뗏을 때(주로 입력가능한 텍스트 키 중점)</p>
+
+    <h2>마우스 관련</h2>
+    <p>click: 마우스버튼을 클릭했을 때</p>
+
+    <!-- 각 form에 값을 입력하면 넘어가고, 값이 입력되지 않으면 입력해달라는 문구 발생-->
+    <!--html 부분-->
+    <h2>회원가입 validator</h2>
+    <form action="">
+      <!--<form> 태그의 action 속성은 폼 데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 URL을 명시-->
+      <div>
+        <div>아이디(uid) <input type="text" name="uid" /></div>
+        <div id="warn1" class="warn"></div>
+        <!-- 요소들의 class명을 똑같이 지정해서 스타일 한꺼번에 지정 가능 -->
+        <!-- id는 같은 이름 지정 불가 -->
+
+        <div>비밀번호(pwd) <input type="password" name="pwd" /></div>
+        <div id="warn2" class="warn"></div>
+
+        <div>이름(name) <input type="text" name="name" /></div>
+        <div id="warn3" class="warn"></div>
+
+        <div>
+          성별(gender)
+          남<input type = "radio" name = "gender" value = "m"/>
+          여<input type = "radio" name = "gender" value = "f"/>
+          <!--Radio buttons let a user select only one of a limited number of choices-->
+        </div>
+        <div id="warn4" class="warn"></div>
+
+        <button type="button" id="joinbtn">입력완료</button>
+      </div>
+    </form>
+
+    <!--script 부분-->
+    <script>
+      let uid = document.querySelector('input[name = "uid"]');
+      let pwd = document.querySelector('input[name = "pwd"]');
+      let name = document.querySelector('input[name = "name"]');
+      let gender = document.querySelectorAll('input[name = "gender"]');
+      let wrn = document.querySelectorAll(".warn");
+      let joinbtn = document.querySelector("#joinbtn");
+      for (let i of wrn) {
+        i.style.color = "red";
+      }
+
+      let checkJoinFrm = (wRn, val, dom, msg) => {
+        wRn.textContent = "";
+        if (dom.value === val) {
+          wRn.textContent = `${msg}를 입력하세요!!`;
+          dom.focus();
+          // 포커스를 얻을때 어떤 행위 하기
+        }
+      };
+
+      let ckboxFrm = (val) => {
+        wrn[3].textContent = ``;   // gender의 warn
+        // 같은 class에 요소가 여러 개 있을 때 배열 마냥 불러옴
+        if (val[0].checked || val[1].checked) {
+          wrn[3].textContent = ``;
+        } else {
+          wrn[3].textContent = `성별을 선택하세요!`;
+        }
+      };
+
+      joinbtn.addEventListener("click", () => {
+        checkJoinFrm(wrn[0], "", uid, "아이디");
+        checkJoinFrm(wrn[1], "", pwd, "패스워드");
+        checkJoinFrm(wrn[2], "", name, "이름");
+        ckboxFrm(gender);
+      });
+    </script>
+
+    <p>dblclick: 마우스버튼을 더블클릭했을때</p>
+    <p>mouseover: 마우스 포인터를 특정요소 위에 두었을때</p>
+    <p>mouseout: 마우스 포인터를 특정요소 밖으로 두었을때</p>
+
+    <h2>input/select관련</h2>
+    <p>focus: 요소가 포커스를 얻을때</p>
+    <p>blur: 요소가 포커스를 잃을때</p>
+
+    <form action="">
+      <div>
+        <!--<label> 태그의 for 속성은 라벨(label)과 결합될 요소를 명시-->
+        <label for="usr_id">아이디</label
+        ><input type="text" id="usr_id" name="user_id" />
+      </div>
+      <div>
+        <label for="usr_ph">전화번호</label
+        ><input type="text" id="usr_ph" name="user_phone" disabled />
+      </div>
+      <div>
+        <label for="usr_age">나이</label
+        ><input type="text" id="usr_age" name="user_age" disabled />
+      </div>
+      <p id="msg">아이디부터 차례로 입력해주세요!</p>
+    </form>
+
+    <script>
+      let usr_id = document.querySelector("#usr_id");
+      let usr_ph = document.querySelector("#usr_ph");
+      let usr_age = document.querySelector("#usr_age");
+      let msg = document.querySelector("#msg");
+      let flag = false;
+      //반복함수
+      let chck = (tt, reRe, inp) => {
+        let result = `${tt}가 올바른 형식이 아닙니다.`;
+        flag = false;
+        msg.style.color = "red";
+        let re = reRe;
+        if (re.test(inp)) {
+          result = `${tt}가 올바른 형식입니다.`;
+          flag = true;
+          msg.style.color = "black";
+        }
+        msg.textContent = result;
+      };
+      // 아이디 제대로 입력되었는지 체크
+      let ch_id = (uid) => {
+        chck("아이디", /^[a-z]{5,17}$/, uid);
+      };
+      // 전화번호 제대로 입력되었는지 체크 = 010,011,012,015,016,018,019로 시작
+      let ch_ph = (uph) => {
+        chck("전화번호", /^01[0125689]-\d{3,4}-\d{4}$/, uph);
+      };
+      // 나이가 제대로 입력되었는지 체크
+      let ch_ag = (uag) => {
+        chck("나이", /^\d{1,2}$|^100$/, uag);
+      };
+
+      //이벤트 핸들러 등록
+      usr_id.addEventListener("blur", (e) => {
+        ch_id(e.currentTarget.value);
+        if (flag) {
+          usr_ph.removeAttribute("disabled");
+        }
+      });
+      usr_ph.addEventListener("blur", (e) => {
+        ch_ph(e.currentTarget.value);
+        if (flag) {
+          usr_age.removeAttribute("disabled");
+        }
+      });
+      usr_age.addEventListener("blur", (e) => {
+        ch_ag(e.currentTarget.value);
+      });
+    </script>
+
+    <p>change: select, checkbox, radio button의 상태가 바뀌었을때</p>
+    <p>submit: submit 버튼을 클릭했을때</p>
+  </body>
+</html>

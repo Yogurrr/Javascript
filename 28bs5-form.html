@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>부트스트랩5 - 폼 다루기</title>
+    <link href="css/bs5/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>부트스트랩5 - 폼 다루기</h1>
+    <h2>기본 예제</h2>
+
+    <p>
+      부트스트랩으로 폼을 디자인하려면 form-label, form-control,
+      form-check-label, form-check-input 등을 사용하면 됨
+    </p>
+
+    <form>
+      <div class="mb-3">
+        <label for="uid" class="form-label">아이디</label>
+        <input type="text" id="uid" name="uid" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="pwd" class="form-label">비밀번호</label>
+        <input type="text" id="pwd" name="pwd" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <input type="checkbox" id="isLogin" class="form-check-input" />
+        <label for="isLogin" class="form-check-label">로그인 기억하기</label>
+      </div>
+      <div>
+        <button type="button" class="btn btn-danger">로그인</button>
+        <button type="button" class="btn btn-warning">
+          아이디/비밀번호 찾기
+        </button>
+      </div>
+    </form>
+
+    <h2>폼 요소 한 줄로 나타내기</h2>
+    <!-- row/col 둘 다에서 가운데 정렬하고 싶으면 상위 div에 class="d-flex" 설정하고
+     하위 label에 class="align-self-center text-center" 설정하기!!-->
+    <form>
+      <div class="row d-flex">
+        <label
+          for="uid2"
+          class="form-label col-md-2 align-self-center text-center"
+        >
+          아이디</label
+        >
+        <div class="col-md-9">
+          <input type="text" id="uid2" name="uid2" class="form-control" />
+        </div>
+      </div>
+      <div class="row d-flex">
+        <label
+          for="pwd2"
+          class="form-label col-md-2 align-self-center text-center"
+        >
+          비밀번호</label
+        >
+        <div class="col-md-9">
+          <input type="text" id="pwd2" name="pwd2" class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label class="col-md-2"></label>
+          <input type="checkbox" id="isLogin2" class="form-check-input" />
+          <label for="isLogin2" class="form-check-label">로그인 기억하기</label>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label class="col-md-2"></label>
+          <button type="button" class="btn btn-danger">로그인</button>
+          <button type="button" class="btn btn-warning">
+            아이디/비밀번호 찾기
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <h2>select, checkbot, radio</h2>
+    <form>
+      <div class="row">
+        <label for="sido" class="form-label">시도</label>
+        <div class="col-md-3">
+          <select class="form-select" id="sido">
+            <option>- 선택하세요 -</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>인천</option>
+            <option>제주</option>
+          </select>
+        </div>
+      </div>
+      <!-- // sido select -->
+
+      <div class="row">
+        <label for="hobby" class="form-label col-md-2">취미</label>
+        <div class="col-md-2">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="hobby"
+            id="hobby"
+            value="soccer"
+          />
+          <label class="form-check-label">축구</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="hobby"
+            value="swim"
+          />
+          <label class="form-check-label">수영</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="hobby"
+            value="trip"
+          />
+          <label class="form-check-label">여행</label>
+        </div>
+      </div>
+      <!-- // hobby checkbox -->
+
+      <div class="row">
+        <label for="gender" class="form-label col-md-2">성별</label>
+        <div class="col-md-2">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            id="gender"
+            value="female"
+          />
+          <label class="form-check-label">여자</label>
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            value="male"
+          />
+          <label class="form-check-label">남자</label>
+        </div>
+      </div>
+      <!-- // gender radio -->
+    </form>
+
+    <h2>floating label</h2>
+    <form>
+      <div>
+        <div class="row form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="fuid"
+            name="fuid"
+            placeholder=""
+          />
+          <label for="fuid">아이디</label>
+        </div>
+        <div class="row form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="fpwd"
+            name="fpwd"
+            placeholder="비밀번호"
+          />
+          <label for="fpwd">비밀번호</label>
+        </div>
+      </div>
+      <div class="row"></div>
+    </form>
+
+    <h2>input group</h2>
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" name="email1" id="email1" />
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" name="email2" id="email2" />
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-text">
+          <input type="checkbox" class="form-check-input" />
+        </div>
+        <input type="text" class="form-control" />
+      </div>
+
+      <div class="input-group">
+        <input type="file" class="form-control" />
+        <button type="button" class="btn btn-success">업로드하기</button>
+      </div>
+    </form>
+
+    <h2>폼 유효성 검사</h2>
+    <p>
+      html5에서 기본적으로 제공하는 폼 유효성 검사를 novalidate라는 코드로 작동
+      중지해둠
+    </p>
+    <p>
+      그런 다음 needs-validation라는 클래스 선택자에 폼 유효성 검사를 수행하는
+      함수를 이벤트로 등록해둠
+    </p>
+    <p></p>
+
+    <form class="row needs-validation" novalidate>
+      <div class="col-md-4">
+        <label for="userid" class="form-label">아이디</label>
+        <input
+          type="text"
+          class="form-control"
+          id="userid"
+          name="userid"
+          required
+        />
+      </div>
+      <!-- // 아이디 -->
+      <div class="col-md-4">
+        <label for="passwd" class="form-label">비밀번호</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwd"
+          name="passwd"
+          required
+        />
+      </div>
+      <!-- // 비밀번호 -->
+      <div class="col-md-4">
+        <label for="name" class="form-label">이름</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          required
+        />
+      </div>
+      <!-- // 이름 -->
+      <div class="col-md-12">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="checkagree"
+          required
+        />
+        <label for="checkagree" class="form-check-label">
+          이용 약관에 동의합니다</label>
+      </div>
+      <!-- // 이용 약관 -->
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary">가입하기</button>
+      </div>
+      <!-- // 버튼 -->
+    </form>
+
+    <p></p>
+    <script src="js/bs5/bootstrap.bundle.min.js"></script>
+    <script>
+      // 함수 정의와 동시에 바로 실행하려면
+      // (함수정의)();
+      // let main = () => { alert('Hello, World!!'); }
+      // main();
+      // (() => { alert('Hello, World!!') })();
+      (() => {
+        'use strict'
+
+        const forms = document.querySelectorAll(".needs-validation");
+
+        Array.from(forms).forEach((form) => {
+          form.addEventListener("submit", e => {
+              if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );   //addEventListner
+        });   //forEach
+      })();
+    </script>
+  </body>
+</html>

@@ -269,9 +269,8 @@
       (() => {
         'use strict'
 
-        const forms = document.querySelectorAll(".needs-validation");
+        const form = document.querySelector(".needs-validation");
 
-        Array.from(forms).forEach((form) => {
           form.addEventListener("submit", e => {
               if (!form.checkValidity()) {
                 e.preventDefault();
@@ -282,7 +281,6 @@
             },
             false
           );   //addEventListner
-        });   //forEach
       })();
     </script>
   </body>
